@@ -4,13 +4,14 @@ class NotesController < ApplicationController
   # GET /notes
   # GET /notes.json
   def index
+    byebug
     if params[:title].present?
-      @notes = Note.where('title LIKE ?', "%#{params[:title]}%").order created_at: :desc
+      @notes = Note.where('title LIKE ?', "%#{params[:title]}%").order created_at: params[:sort_by]
     elsif params[:labels].present?
       labels = params[:labels].split(',')
       @notes = Note.joins('join labels_notes on notes.id = labels_notes.note_id').where('labels_notes.label_id in (?)',Label.all.where('name in (?)', labels).select(:id)).uniq
     else
-      @notes = Note.all.order created_at: :desc
+      @notes = Note.all.order created_at: params[:sort_by]
     end
 
     if params[:start_date].present? and params[:end_date].present?
@@ -29,6 +30,15 @@ class NotesController < ApplicationController
     if params[:user_email].present?
       @notes = @notes.joins('join users on users.id = notes.user_id').where('users.email like ?', "%#{params[:user_email]}%")
     end
+
+    # if params[:sort_by].present?
+    #   if params[:sort_by] == 'DESC'
+    #     @notes = @notes.order('notes.created_at DESC',)
+    #   else
+    #     @notes = @notes.order('notes.created_at ASC',)
+    #   end
+    # end
+
     @labels = Label.all
     @note = Note.new
   end
