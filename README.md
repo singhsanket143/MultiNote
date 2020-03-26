@@ -34,7 +34,7 @@ Follow the steps below to run the project.
 
 1. Clone the Repository
 ```
-$ git clone https://github.com/singhsanket143/GrofersAssigmentApp.git
+$ https://github.com/singhsanket143/Hemlet-Assignment-App.git
 ```
 2. Install the gems
 ```
