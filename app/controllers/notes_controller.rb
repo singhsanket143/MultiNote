@@ -4,7 +4,7 @@ class NotesController < ApplicationController
   # GET /notes
   # GET /notes.json
   def index
-    byebug
+    
     if params[:title].present?
       @notes = Note.where('title LIKE ?', "%#{params[:title]}%").order created_at: params[:sort_by]
     elsif params[:labels].present?
