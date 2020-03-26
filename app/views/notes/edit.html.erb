@@ -1,0 +1,27 @@
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">
+      Create New Note
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <%= render 'form', note: @note, labels: @labels %>
+      </blockquote>
+    </div>
+  </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        let converter = new showdown.Converter();
+        let pad = document.getElementById('note_description');
+        let markdownArea = document.getElementById('markdown');
+        let convertTextAreaToMarkdown = function(){
+            let markdownText = pad.value;
+            let html = converter.makeHtml(markdownText);
+            markdownArea.innerHTML = html;
+        };
+        $(document).on('input', pad, convertTextAreaToMarkdown);
+        convertTextAreaToMarkdown();
+    });
+</script>
