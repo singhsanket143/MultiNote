@@ -1,13 +1,13 @@
 
-var selectedTags = [];
-var selectedFilterTags = [];
+let selectedTags = [];
+let selectedFilterTags = [];
 $(document).ready(function () {
-    var converter = new showdown.Converter();
-    var pad = document.getElementById('note_description');
-    var markdownArea = document.getElementById('markdown');
-    var convertTextAreaToMarkdown = function () {
-        var markdownText = pad.value;
-        var html = converter.makeHtml(markdownText);
+    let converter = new showdown.Converter();
+    let pad = document.getElementById('note_description');
+    let markdownArea = document.getElementById('markdown');
+    let convertTextAreaToMarkdown = function () {
+        let markdownText = pad.value;
+        let html = converter.makeHtml(markdownText);
         markdownArea.innerHTML = html;
     };
     $(document).on('input', pad, convertTextAreaToMarkdown);
@@ -20,11 +20,11 @@ $(document).ready(function () {
     $(".label-item").click(function (event) {
         event.preventDefault();
         console.log($(this).text());
-        for (var i = 0; i < selectedTags.length; i++) {
+        for (let i = 0; i < selectedTags.length; i++) {
             if (selectedTags[i] === $(this).text()) return;
         }
         selectedTags.push($(this).text());
-        var input = $("#labelList");
+        let input = $("#labelList");
         $("#labelList").val(selectedTags);
         $(".tag-list").append(`<span class="badge badge-pill badge-info mr-3">${$(this).text()} <span class="cross" style="margin-left: 5px;color: black;">x</span></span>`)
     });
@@ -32,17 +32,17 @@ $(document).ready(function () {
     $(".label-filter-item").click(function (event) {
         event.preventDefault();
         console.log($(this).text());
-        for (var i = 0; i < selectedFilterTags.length; i++) {
+        for (let i = 0; i < selectedFilterTags.length; i++) {
             if (selectedFilterTags[i] === $(this).text()) return;
         }
         selectedFilterTags.push($(this).text());
-        var input = $("#labelFilterList");
+        let input = $("#labelFilterList");
         $("#labelFilterList").val(selectedFilterTags);
         $(".tag-filter-list").append(`<span style="padding: 5px;" class="badge badge-pill badge-warning mr-3">${$(this).text()} <span class="filter-cross" style="margin-left: 5px;color: black;">x</span></span>`)
     });
 
     $(document).on('click', '.cross', function () {
-        var text = $($(this)[0].parentElement).text().split(" ")[0];
+        let text = $($(this)[0].parentElement).text().split(" ")[0];
         selectedTags = selectedTags.filter(function (value) {
             return value !== text;
         });
@@ -51,7 +51,7 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '.filter-cross', function () {
-        var text = $($(this)[0].parentElement).text().split(" ")[0];
+        let text = $($(this)[0].parentElement).text().split(" ")[0];
         selectedFilterTags = selectedFilterTags.filter(function (value) {
             return value !== text;
         });
