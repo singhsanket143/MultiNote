@@ -10,6 +10,9 @@ https://stark-savannah-91363.herokuapp.com/
 ## Features Implemented
 
 - Addition/Deletion/Updation of Notes
+- App supports addition of images by both markdown and separate image upload
+- Sort the posts/notes
+- Filter by user email
 - Information stored about notes
   - Title
   - Label
