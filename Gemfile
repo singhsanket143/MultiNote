@@ -42,7 +42,7 @@ gem 'nokogiri'
 gem 'toastr-rails'
 gem 'activeadmin'
 gem "active_material", github: "vigetlabs/active_material"
-gem 'carrierwave', '~> 2.0'
+gem 'carrierwave', '~> 2.1'
 gem 'pg'
 
 group :development, :test do
